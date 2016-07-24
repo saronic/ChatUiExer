@@ -5,7 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.fei.chatuiexer.bean.Message;
@@ -32,10 +31,6 @@ public class MsgAdapter extends ArrayAdapter<Message> {
             convertView = LayoutInflater.from(mContext).inflate(R.layout.list_item_chat, parent,
                     false);
             viewHolder = new ViewHolder();
-            viewHolder.mLeftLinearLayout = (LinearLayout) convertView.findViewById(
-                    R.id.list_item_chat_left_linear_layout);
-            viewHolder.mRightLinearLayout = (LinearLayout) convertView.findViewById(
-                    R.id.list_item_chat_right_linear_layout);
             viewHolder.mLeftTextView = (TextView) convertView.findViewById(
                     R.id.list_item_left_text_view);
             viewHolder.mRightTextView = (TextView) convertView.findViewById(
@@ -46,12 +41,12 @@ public class MsgAdapter extends ArrayAdapter<Message> {
         viewHolder = (ViewHolder) convertView.getTag();
 
         if (msg.getMsgType() == Message.TYPE_RECEIVE) {
-            viewHolder.mRightLinearLayout.setVisibility(View.GONE);
-            viewHolder.mLeftLinearLayout.setVisibility(View.VISIBLE);
+            viewHolder.mRightTextView.setVisibility(View.GONE);
+            viewHolder.mLeftTextView.setVisibility(View.VISIBLE);
             viewHolder.mLeftTextView.setText(msg.getMsgContent());
         } else {
-            viewHolder.mLeftLinearLayout.setVisibility(View.GONE);
-            viewHolder.mRightLinearLayout.setVisibility(View.VISIBLE);
+            viewHolder.mRightTextView.setVisibility(View.VISIBLE);
+            viewHolder.mLeftTextView.setVisibility(View.GONE);
             viewHolder.mRightTextView.setText(msg.getMsgContent());
         }
 
@@ -60,8 +55,6 @@ public class MsgAdapter extends ArrayAdapter<Message> {
     }
 
     class ViewHolder {
-        LinearLayout mLeftLinearLayout;
-        LinearLayout mRightLinearLayout;
         TextView mLeftTextView;
         TextView mRightTextView;
     }
